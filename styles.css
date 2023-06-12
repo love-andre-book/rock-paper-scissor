@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'gothic';
+    src: url('fonts/Ancient.ttf');
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'gothic';
+}
+
+/*
+div {
+    border-style: dotted;
+    border-color: red;
+    border-width: 2px;
+}
+*/
+
+
+#Sword {
+    background-image: url("images/icons/sword.jpg");
+    width: 140px;
+    height: 150px;
+    border-radius: 12px;
+}
+
+#Shield {
+    background-image: url("images/icons/shield.jpg");
+    width: 140px;
+    height: 150px;
+    border-radius: 12px;
+}
+
+#Morningstar {
+    background-image: url("images/icons/mace.jpg");
+    width: 140px;
+    height: 150px;
+    border-radius: 12px;
+}
+
+#player {
+    height: 150px;
+    padding-top: 50px;
+}
+
+#computer {
+    height: 140px;
+}
+
+button:hover {
+
+    border-width: 4px;
+
+}
+
+.main-container {
+    margin-top: 20%;
+    margin-bottom: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.scores {
+    font-size: 45px;
+    padding-left: 100px;
+}
+
+.results {
+    background-image: url("images/scoreboard.png");
+    background-repeat: no-repeat;
+    align-self: center;
+    width: 800px;
+    height: 400px;
+}
+
+.message {
+    font-size: 50px;
+}
+
+h1 {
+
+    display: flex;
+    justify-content: center;
+    font-size: 90px;
+    margin-bottom: 0px;
+
+}
+

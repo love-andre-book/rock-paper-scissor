@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="rps.js" defer></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissor!</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Sword, Shield, or Morningstar!</title>
 </head>
 <body>
-    <script src="rps.js"></script>
+    <div class="main-container">
+        <h1>Sword, Shield, or Morningstar!</h1>
+        <div class="buttons">
+            <button id="Sword"></button>
+            <button id="Shield"></button>
+            <button id="Morningstar"></button>
+        </div>
+        <div class="results">
+            <div class="scores">
+                <div id="player">Player score: </div>
+                <div id="computer">Computer score: </div>
+            </div>
+            <p class="message"></p>
+        </div>
+    </div>
 </body>
 </html>
