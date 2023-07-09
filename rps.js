@@ -1,7 +1,18 @@
 const buttons = document.querySelectorAll("button");
-const msg = document.querySelector(".message");
+const msgResult = document.querySelector(".message");
+const winMessage = document.querySelector(".win-message");
+const player = document.querySelector("#player");
+const computer = document.querySelector("#computer");
+const msgPlayer = player.textContent
+const msgComputer = computer.textContent
 let playerScore = 0;
 let computerScore = 0;
+const result = ['tie', 'player', 'computer']
+
+
+//initializing score
+player.textContent = msgPlayer + ` ${playerScore}`;
+computer.textContent = msgComputer + ` ${computerScore}`;
 
 const winMessages = {
     'Sword': 'is faster than',
@@ -10,23 +21,53 @@ const winMessages = {
 }
 
 
-
 buttons.forEach(btn => {
 
     // retrieve the string representation of the attribute
     const choice = btn.id;
-
+    let winner;
+    let msg;
+    
     btn.addEventListener('click', e => {
-        msg.textContent =  playRound(choice , getComputerChoice())
+        const [newWinner, resultMessage] =  playRound(choice , getComputerChoice());
+        msgResult.textContent = resultMessage
+        winner = newWinner
+
+        // Update the score
+        if (winner === 'player') {
+            playerScore++;
+        } else if (winner === 'computer') {
+            computerScore++;
+        }
+        updateScores()
+        console.log(winner)
+
+        //checking to se if anyone won
+        msg = isWinner(playerScore, computerScore)
+        if (msg.length > 0) {
+            playerScore = 0;
+            computerScore = 0;
+            updateScores()
+            }
+
+        winMessage.textContent = msg
+
     });
 });
+
+function updateScores() {
+
+    player.textContent = msgPlayer + ` ${playerScore}`;
+    computer.textContent = msgComputer + ` ${computerScore}`;
+
+}
 
 function isWinner(pScore, cScore) {
 
     if (pScore === 5)
-        return ' Player wins!'
-    else if (cScore ===5)
-        return ' Computer wins'
+        return `\nPlayer wins the game with a score of ${playerScore} against ${computerScore}`
+    else if (cScore === 5)
+        return `\nComputer wins the game with a score of ${playerScore} against ${computerScore}`
     else
         return ''
 
@@ -48,28 +89,22 @@ function playRound(playerSelection, computerSelection) {
 
     if (player === computerSelection) {
 
-        return "It's a tie!";
+        return ['tie', "It's a tie!"];
 
     }
     else if (player === "Morningstar" && computerSelection === "Shield" || 
     player === "Shield" && computerSelection === "Sword" || 
     player === "Sword" && computerSelection === "Morningstar") {
 
-        return `You Win! ${player} ${winMessages[player]} ${computerSelection}!`;
+        return ['player', `You Win! ${player} ${winMessages[player]} ${computerSelection}!`];
 
     }
     else {
 
-        return `You Lose! ${computerSelection} ${winMessages[computerSelection]} ${player}`;
+        return ['computer', `You Lose! ${computerSelection} ${winMessages[computerSelection]} ${player}`];
 
     }
 };
-
-function isGameOver() {
-
-
-
-}
 
 function game() {
 
@@ -78,17 +113,19 @@ function game() {
 
     while (computerWins < 5 && playerWins < 5) {
 
-        let playerChoice = prompt("Sword, Shield, or Morningstar?");
+        //let playerChoice = prompt("Sword, Shield, or Morningstar?");
         let computerChoice = getComputerChoice();
 
-        console.log(`You chose ${playerChoice}.`);
-        console.log(`The computer chose ${computerChoice}.`);
-        console.log(playRound(playerChoice, computerChoice));
+        //console.log(`You chose ${playerChoice}.`);
+        //console.log(`The computer chose ${computerChoice}.`);
+        //console.log(playRound(playerChoice, computerChoice));
+
+        msgResult.textContent = playRound(playerChoice, computerChoice)
 
         // Update the score
-        if (playRound(playerChoice, computerChoice) === "You win the round!") {
+        if (msgResult.textContent === "You win the round!") {
             playerWins++;
-        } else if (playRound(playerChoice, computerChoice) === "You lose the round!") {
+        } else if (msgResult.textContent === "You lose the round!") {
             computerWins++;
         }
 
