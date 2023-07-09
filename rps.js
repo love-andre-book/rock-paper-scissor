@@ -9,6 +9,9 @@ let playerScore = 0;
 let computerScore = 0;
 const result = ['tie', 'player', 'computer']
 
+// Get the overlay element and the refresh button
+const overlay = document.getElementById('overlay');
+const refreshButton = document.getElementById('refreshButton');
 
 //initializing score
 player.textContent = msgPlayer + ` ${playerScore}`;
@@ -20,6 +23,23 @@ const winMessages = {
     'Morningstar': 'crushes'
 }
 
+// Function to show the overlay
+function showOverlay() {
+    overlay.style.display = 'flex';
+    overlay.style.flexDirection = 'column';
+    document.body.style.overflow = 'hidden'; // Disable scrolling
+  }
+
+  // Function to hide the overlay
+function hideOverlay() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Enable scrolling
+  }
+  
+// Add event listener to the refresh button
+refreshButton.addEventListener('click', () => {
+    location.reload(); // Refresh the page
+  });
 
 buttons.forEach(btn => {
 
@@ -47,7 +67,8 @@ buttons.forEach(btn => {
         if (msg.length > 0) {
             playerScore = 0;
             computerScore = 0;
-            updateScores()
+            updateScores();
+            showOverlay();
             }
 
         winMessage.textContent = msg
@@ -67,7 +88,7 @@ function isWinner(pScore, cScore) {
     if (pScore === 5)
         return `\nPlayer wins the game with a score of ${playerScore} against ${computerScore}`
     else if (cScore === 5)
-        return `\nComputer wins the game with a score of ${playerScore} against ${computerScore}`
+        return `\nComputer wins the game with a score of ${computerScore} against ${playerScore}`
     else
         return ''
 
@@ -104,33 +125,5 @@ function playRound(playerSelection, computerSelection) {
         return ['computer', `You Lose! ${computerSelection} ${winMessages[computerSelection]} ${player}`];
 
     }
-};
-
-function game() {
-
-    let computerWins = 0;
-    let playerWins = 0;
-
-    while (computerWins < 5 && playerWins < 5) {
-
-        //let playerChoice = prompt("Sword, Shield, or Morningstar?");
-        let computerChoice = getComputerChoice();
-
-        //console.log(`You chose ${playerChoice}.`);
-        //console.log(`The computer chose ${computerChoice}.`);
-        //console.log(playRound(playerChoice, computerChoice));
-
-        msgResult.textContent = playRound(playerChoice, computerChoice)
-
-        // Update the score
-        if (msgResult.textContent === "You win the round!") {
-            playerWins++;
-        } else if (msgResult.textContent === "You lose the round!") {
-            computerWins++;
-        }
-
-    }
-};
-
-
+}
 

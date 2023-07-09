@@ -3,6 +3,13 @@
     src: url('fonts/Ancient.ttf');
 }
 
+@keyframes fadeIn {
+    
+    0% { opacity:0;}
+    100% {opacity:1}
+
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -46,6 +53,38 @@ div {
 
 #computer {
     height: 140px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as desired */
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.refresh-button {
+    padding: 10px 20px;
+    margin-top: 40px;
+    font-size: 35px;
+    background-color: #FFFDEE;
+    height: 100px;
+    width: 250px;
+    border-radius: 30px;
+
+}
+
+.win-message {
+
+    font-size: 75px;
+    padding-bottom: 15px;
+    color: antiquewhite;
+    animation: fadeIn 5s;
+
 }
 
 button:hover {

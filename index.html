@@ -9,6 +9,9 @@
     <title>Sword, Shield, or Morningstar!</title>
 </head>
 <body>
+    <audio autoplay loop>
+        <source src="sound/beyond-new-horizons-free-epic-viking-medieval-soundtrack.mp3" type="audio/mpeg">
+    </audio>
     <div class="main-container">
         <h1>Sword, Shield, or Morningstar!</h1>
         <div class="buttons">
@@ -22,7 +25,10 @@
                 <div id="computer">Computer score: </div>
             </div>
             <p class="message"></p>
-            <p class="win-message"></p>
+            <div class="overlay" id="overlay">
+                <div class="win-message"></div>
+                <button id="refreshButton" class="refresh-button">Play again?</button>
+            </div>
         </div>
     </div>
 </body>
